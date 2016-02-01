@@ -22,6 +22,7 @@ grep1<-grep("mean\\(\\)|std\\(\\)",faetures$V2)
 grep3<-grep1+2
 dftwo<-dfone[,c(1,2,grep3)]
 
+
 ##Uses descriptive activity names to name the activities in the data set
 
 colnames(dftwo)[2] <- 'Ycol'
@@ -31,6 +32,7 @@ dftwo$Ycol<-dftwovec
 
 ##Appropriately labels the data set with descriptive variable names.
 
+col1<-faetures[grep1,]
 col4<-gsub("-","", col1$V2)
 col4<-gsub("_","", col4)
 col4<-gsub("\\()","", col4)
@@ -47,4 +49,4 @@ colnames(dftwo)<-col4
 tidydata1 <- ddply(dftwo, .(activity,subject), colMeans)
 translator_vector = c(A='WALKING',B='WALKING_UPSTAIRS',C='WALKING_DOWNSTAIRS',D='SITTING', E='STANDING',F='LAYING')
 tdvec = translator_vector[tidydata1$activity]
-tidydata1$activity<-dftwovec
+tidydata1$activity<-tdvec
